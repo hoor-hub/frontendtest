@@ -1,48 +1,34 @@
-// import * as actionTypes from "../types/alltypes"; 
-// import { Get } from "../../helper/apiCalls"; 
-// import { BASE_URL } from "../../helper/baseUrl";
-
-// export const fetchNews = () => {
-//   return (dispatch) => {
-//     dispatch({ type: actionTypes.FETCH_NEWS_NEWSAPI_LOADING });
-//     Get("", BASE_URL) // Pass an empty string as the endpoint and BASE_URL as the token
-//       .then(function (response) {
-//         if (response) {
-//           dispatch({
-//             type: actionTypes.FETCH_NEWS_NEWSAPI_SUCCESS,
-//             payload: response,
-//           });
-//         } else {
-//           dispatch({ type: actionTypes.FETCH_NEWS_NEWSAPI_FAILURE });
-//         }
-//       })
-//       .catch(function (error) {
-//         dispatch({
-//           type: actionTypes.FETCH_NEWS_NEWSAPI_FAILURE,
-//           payload: error.message,
-//         });
-//       });
-//   };
-// };
-// redux/actions.js
 import axios from 'axios';
+
 
 export const FETCH_NEWS_REQUEST = 'FETCH_NEWS_REQUEST';
 export const FETCH_NEWS_SUCCESS = 'FETCH_NEWS_SUCCESS';
 export const FETCH_NEWS_FAILURE = 'FETCH_NEWS_FAILURE';
+export const SET_SEARCH_KEYWORD = 'SET_SEARCH_KEYWORD';
+export const SET_FILTER_OPTIONS = 'SET_FILTER_OPTIONS';
 
 export const fetchNewsRequest = () => ({
   type: FETCH_NEWS_REQUEST,
 });
 
-export const fetchNewsSuccess = news => ({
+export const fetchNewsSuccess = (data) => ({
   type: FETCH_NEWS_SUCCESS,
-  payload: news,
+  payload: data,
 });
 
-export const fetchNewsFailure = error => ({
+export const fetchNewsFailure = (error) => ({
   type: FETCH_NEWS_FAILURE,
   payload: error,
+});
+
+export const setSearchKeyword = (keyword) => ({
+  type: SET_SEARCH_KEYWORD,
+  keyword,
+});
+
+export const setFilterOptions = (options) => ({
+  type: SET_FILTER_OPTIONS,
+  payload: options,
 });
 
 export const fetchNews = () => {
